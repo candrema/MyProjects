@@ -1030,6 +1030,8 @@ pre code {
   margin-left: -15px;
 }
 
+
+
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -1484,7 +1486,7 @@ pre code {
     max-width: 75%;
   }
   .col-md-10 {
-    flex: 0 0 83.333333%;
+    flex: 0 0 73.333333%;
     max-width: 83.333333%;
   }
   .col-md-11 {
@@ -4172,6 +4174,8 @@ tbody.collapse.show {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  height: 3.5em
+  ;
 }
 
 .navbar>.container,
@@ -7528,7 +7532,7 @@ button.bg-dark:focus {
 
 .pl-4,
 .px-4 {
-  padding-left: 1.5rem !important;
+  padding-left: 0rem !important;
 }
 
 .p-5 {
