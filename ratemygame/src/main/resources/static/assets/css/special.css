@@ -1,0 +1,30 @@
+
+table.leaderTable {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border: 2px solid #F4F4F4;
+}
+table.leaderTable td, table.leaderTable th {
+  border-bottom: 1px solid #000000;
+  padding: 3px 3px;
+}
+table.leaderTable tbody td {
+  font-size: 13px;
+}
+table.leaderTable tr:nth-child(even) {
+  background: #FFFEFD;
+}
+table.leaderTable thead {
+  border-bottom: 4px solid #333333;
+}
+table.leaderTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+table.leaderTable tfoot td {
+  font-size: 14px;
+}
