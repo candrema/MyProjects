@@ -1030,8 +1030,6 @@ pre code {
   margin-left: -15px;
 }
 
-
-
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -17276,7 +17274,7 @@ footer .pull-center {
 }
 
 .section {
-  padding: 70px 0;
+  padding: 40px 0;
 }
 
 .profile-page .page-header {
