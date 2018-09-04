@@ -43,3 +43,12 @@ div.tabNews {
 div.bodytabNews {
 	height: 100%;
 }
+
+div.newsImage{
+  width: 25%;
+  height: 25%;
+}
+
+div.newsImageLast{
+  margin-right: 0px;
+}
