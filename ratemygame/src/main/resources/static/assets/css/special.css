@@ -2,7 +2,7 @@
 table.leaderTable {
   font-family: Arial, Helvetica, sans-serif;
   width: 100%;
-  height: 90%;
+  height: 100%;
   text-align: center;
   border-collapse: collapse;
   border: 2px solid #DEDEDE;
@@ -45,10 +45,15 @@ div.bodytabNews {
 }
 
 div.newsImage{
-  width: 25%;
-  height: 25%;
+  border-bottom: 2px solid #DEDEDE;
+  border-left: 2px solid #DEDEDE;
+  border-right: 2px solid #DEDEDE;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #FFFEFD;
 }
 
-div.newsImageLast{
-  margin-right: 0px;
+img.mostVotedImage{
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
