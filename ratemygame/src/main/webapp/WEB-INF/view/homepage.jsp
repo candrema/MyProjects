@@ -3,6 +3,8 @@
     
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,14 +64,12 @@
                   </ul>
                   <div class="collapse navbar-collapse">
                   <ul class="navbar-nav ml-auto">
-				<c:choose>
-				    <c:when test="hasRole('ROLE_USER')">
-				        <li> <a>TheGuyWithPants</a></li> 
-				    </c:when>    
-				    <c:otherwise>
-				        <li> <a>Guest</a></li> 
-				    </c:otherwise>
-				</c:choose>                  
+                  
+                  <sec:authorize access="hasRole('USER')">
+                    <li> <a>${principal.username}</a></li> 
+                  </sec:authorize>
+                  
+				              
                   <li class="dropdown nav-item">
                     <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                       <div class="profile-photo-small">
