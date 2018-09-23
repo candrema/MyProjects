@@ -1,28 +1,27 @@
 package com.ratemygame.entity;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class CustomUserDetails extends User implements UserDetails{
-	
-	
-	/**
-	 * 
-	 */
+public class CustomUserDetails extends User implements UserDetails {
+
+
 	private static final long serialVersionUID = 1L;
 
 	public CustomUserDetails(final User user) {
 		super(user);
 	}
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority[] roles = {new SimpleGrantedAuthority ("ROLE_USER")};
-		return Arrays.asList(roles);
+		return getRoles()
+				.stream()
+				.map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -32,7 +31,7 @@ public class CustomUserDetails extends User implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return super.getUsername();
+		return super.getName();
 	}
 
 	@Override
