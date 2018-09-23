@@ -66,7 +66,7 @@
                   <ul class="navbar-nav ml-auto">
                   
                   <sec:authorize access="hasRole('USER')">
-                    <li> <a>${principal.username}</a></li> 
+                    <li> <a>${principal.name}</a></li> 
                   </sec:authorize>
                   
 				              

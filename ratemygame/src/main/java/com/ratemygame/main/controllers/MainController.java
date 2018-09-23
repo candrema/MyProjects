@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/*@Controller
-@RequestMapping*/
+@Controller
+@RequestMapping
 public class MainController {
 	
-	/*@GetMapping("homepage")
+	@GetMapping("/homepage")
 	public String getMainPage(Model model) {
 		return "homepage";
-	}*/
+	}
 
 }

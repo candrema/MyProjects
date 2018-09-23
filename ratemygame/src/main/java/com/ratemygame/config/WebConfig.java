@@ -13,17 +13,17 @@ public class WebConfig implements WebMvcConfigurer  {
 	    @Override
 	    public void addViewControllers(ViewControllerRegistry registry) {
 	    	
-	       // registry.addRedirectViewController("/", "homepage");
+	        registry.addRedirectViewController("/", "/homepage");
 	       // registry.addViewController("login.html");
 	    }
 	    
 	    @Override
 	    public void configureViewResolvers(ViewResolverRegistry registry) {
-	     /*   InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 	        resolver.setPrefix("/WEB-INF/view/");
 	        resolver.setSuffix(".jsp");
 	        resolver.setViewClass(JstlView.class);
-	        registry.viewResolver(resolver);*/
+	        registry.viewResolver(resolver);
 	    }
 
 
