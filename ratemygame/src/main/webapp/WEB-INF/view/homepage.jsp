@@ -5,6 +5,8 @@
 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<%@ page language="java" import="java.util.*,java.lang.*" %> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +25,9 @@
   <!-- CSS Files -->
   <link href="./assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
   <link href="./assets/css/special.css" rel="stylesheet" />
+  
+    <% List<String> bigGames = ((List<String>) request.getAttribute("bigGames"));%>
+    <% String bigGamesPath = ((String) request.getAttribute("bigGamesPath"));%>
 </head>
 
 <body>
@@ -66,7 +71,7 @@
                   <ul class="navbar-nav ml-auto">
                   
                   <sec:authorize access="hasRole('USER')">
-                    <li> <a>${principal.name}</a></li> 
+                    <li> <a> <%= request.getAttribute("username")%></a></li> 
                   </sec:authorize>
                   
 				              
@@ -103,27 +108,32 @@
             <!-- Carousel Card -->
             <div class="card card-raised card-carousel my-0 mh-100">
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
-                <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <ol class="carousel-indicators">  
+          
+                <%	for (int i = 0; i<bigGames.size();i++){
+                		if (i==0){ %>
+                 			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                	<%	} else { %>
+                			<li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>"></li>
+                	<%	}
+                	}
+                %>
+                
                 </ol>
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="./assets/img/scum_main.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/img/scum_main.jpg" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/img/scum_main.jpg" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
-                    </div>
-                  </div>
+                <%  for (int i = 0; i<bigGames.size();i++){
+	            		if (i==0){ %>
+	         				<div class="carousel-item active">
+		        	<%	} else { %>
+		        			<div class="carousel-item">
+		        	<%	} %>
+	            		<img class="d-block w-100" src="<%=bigGamesPath + bigGames.get(i)%>">
+	            		<div class="carousel-caption d-none d-md-block">
+	            		</div>
+                  		</div>
+                 <%	}
+           		 %>
+
                 </div>
               </div>
             </div>

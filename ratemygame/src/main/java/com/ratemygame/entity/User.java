@@ -19,7 +19,7 @@ public class User {
 	@Id
     @GeneratedValue
     @Column(name = "user_id")
-    private int id;
+    private long id;
 
 	@Column(name = "email")
 	private String email;
@@ -54,11 +54,11 @@ public class User {
 		this.id = user.getId();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
