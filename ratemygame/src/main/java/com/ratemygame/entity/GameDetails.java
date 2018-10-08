@@ -21,6 +21,19 @@ public class GameDetails {
     
     @Column(name = "description")
     private String description;
+    
+    @Column(name = "genre")
+    private String genre;
+    
+    @Column(name = "plataforms")
+    private String plataforms;
+    
+    @Column(name = "year")
+    private String year;
+    
+    @Column(name = "company")
+    private String company;
+       
 
     public GameDetails() {
     	

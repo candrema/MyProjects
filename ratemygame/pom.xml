@@ -95,6 +95,25 @@
 
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>dev</build.profile.id>
+				<profile.name>dev</profile.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<build.profile.id>prod</build.profile.id>
+				<profile.name>prod</profile.name>
+			</properties>
+		</profile>
+	</profiles>
 
 
 	<build>
@@ -104,6 +123,19 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/profiles/${profile.name}</directory>
+				<includes>
+					<include>*.xml</include>
+					<include>*.properties</include>
+					<include>*.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 	</build>
 
 </project>
