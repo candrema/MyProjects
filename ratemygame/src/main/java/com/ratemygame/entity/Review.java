@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,14 +17,20 @@ public class Review {
 	@Column(name = "id")
 	private long id;
 	
-	@ManyToOne
-	private Game game;
+	@Column(name = "game_id")
+	private long gameId;
 	
 	@Column(name = "rate")
 	private int rate;
 	
 	@Column(name = "comment")
 	private String comment;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	
 	
 	
 	public Review() {
@@ -41,13 +48,13 @@ public class Review {
 	}
 
 
-	public Game getGame() {
-		return game;
+	public long getGameId() {
+		return gameId;
 	}
 
 
-	public void setGame(Game game) {
-		this.game = game;
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
 	}
 
 
@@ -69,4 +76,18 @@ public class Review {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
+	
 }

@@ -62,6 +62,40 @@ public class GameDetails {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getPlataforms() {
+		return plataforms;
+	}
+
+	public void setPlataforms(String plataforms) {
+		this.plataforms = plataforms;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	
+	
 	
     
 	

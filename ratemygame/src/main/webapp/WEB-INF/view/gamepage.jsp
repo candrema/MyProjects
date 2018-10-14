@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page language="java"
-	import="java.util.*,java.lang.*,com.ratemygame.entity.GameDetails"%>
+	import="java.util.*,java.lang.*,com.ratemygame.entity.GameDetails, com.ratemygame.entity.Review, com.ratemygame.entity.Game"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
-	href="./assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="./assets/img/favicon.png">
+	href="${pageContext.request.contextPath}/assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>E-GamingReviews</title>
 <meta
@@ -21,15 +23,15 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <!-- CSS Files -->
-<link href="./assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
-<link href="./assets/css/special.css" rel="stylesheet" />
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="./assets/demo/demo.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/material-kit.css?v=2.0.4" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/special.css" rel="stylesheet" />
 
 <%
 	GameDetails gameDetails = ((GameDetails) request.getAttribute("gameDetails"));
 	String detailsImagePath = ((String) request.getAttribute("gameDetailsPath"));
 	String gameId = ((String) request.getAttribute("gameId"));
+	List<Review> reviews = ((List<Review>) request.getAttribute("reviews"));
+	Game game = ((Game) request.getAttribute("game"));
 %>
 </head>
 
@@ -71,7 +73,7 @@
 							class="profile-photo dropdown-toggle nav-link"
 							data-toggle="dropdown">
 								<div class="profile-photo-small">
-									<img src="./assets/img/faces/photo.jpg" alt="Circle Image"
+									<img src="${pageContext.request.contextPath}/assets/img/faces/photo.jpg" alt="Circle Image"
 										class="rounded img-fluid">
 								</div>
 						</a>
@@ -100,7 +102,7 @@
 					<br> <a> SCUM </a> <br> <br> <br>
 					<div class="row">
 						<div class="col">
-							<img src="<%=detailsImagePath + gameId + ".jpg"%>" class="rounded img-fluid">
+							<img src="${pageContext.request.contextPath}<%= "/" + detailsImagePath + gameId + ".jpg"%>" class="rounded img-fluid">
 						</div>
 						<div class="col-sm-4">
 							<b> Game Details</b> <br> <br> <i> Description: </i> <i>
@@ -123,90 +125,30 @@
 
 			<div class="row">
 				<div class="col-sm-6">
-					<a> Features </a> <br>
+					<a> Reviews </a> <br>
+					<%
+					for(Review review: reviews){
+					%>
 					<div class="row">
 						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
+							<img src="${pageContext.request.contextPath}/assets/img/example1.jpg" alt="Rounded Image"
 								class="rounded img-fluid">
 						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalbla
-							lbalblalbalblalbalblalbalblalbalblalbalbal</div>
+						<div class="col-sm-3"> <%= review.getComment()%> </div>
 					</div>
 					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
+					<%	
+					}
+					%>
+					<div class= "row">
+						<div class="col">
+							<form:form action="submitReview" method="PUT" modelAttribute="newReview">
+								<form:input type = "text" placeholder = "Comment" name = "comment"  id = "comment" path = "comment"/>
+								<form:input type = "text" placeholder = "Rate" name = "rate"  id = "rate" path = "rate"/>
+								<form:hidden placeholder = "GameId" name = "gameId"  id = "gameId" path = "gameId" value="<%=gameId%>"/>
+								<button type= "submit" value ="Submit"></button>
+							</form:form>
 						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalbla
-							lbalblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalbla
-							lbalblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalbla
-							lbalblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-
-				</div>
-
-				<div class="col-sm-6">
-
-					<a> Gameplay </a> <br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalblal
-							balblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalblal
-							balblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalblal
-							balblalbalblalbalblalbalblalbalblalbalbal</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-sm-5">
-							<img src="./assets/img/example1.jpg" alt="Rounded Image"
-								class="rounded img-fluid">
-						</div>
-						<div class="col-sm-3">coisas novas
-							blablablalbalblalbalblalbalblal
-							balblalbalblalbalblalbalblalbalblalbalbal</div>
 					</div>
 				</div>
 			</div>

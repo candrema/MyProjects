@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,10 +32,17 @@ public class Game {
 	private GameDetails gameDetails;
 	
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
     private List<Review> reviews;
 	
 	public Game() {
 		
+	}
+	
+	public Game(long id, String name, String fullname) {
+		this.id = id;
+		this.name = name;
+		this.fullname = fullname;
 	}
 	
 	

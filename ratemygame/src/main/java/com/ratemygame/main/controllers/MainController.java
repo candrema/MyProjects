@@ -4,9 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
+import com.ratemygame.entity.Game;
+import com.ratemygame.entity.Review;
 import com.ratemygame.entity.User;
 import com.ratemygame.services.HomepageService;
 
@@ -24,17 +29,33 @@ public class MainController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		model.addAttribute("username", user.getName());
+		model.addAttribute("topGames", homepageService.getTopGames());
+		
 		return "homepage";
 	}
 
-	@GetMapping("/getGame/{id}")
+	@GetMapping("/game/{id}")
 	public String getGame(@PathVariable("id") String id, Model model) {
-
+		
+		Game game = homepageService.getGame(Long.valueOf(id));
 		model.addAttribute("gameDetails", homepageService.getGameDetails(Long.valueOf(id)));
 		model.addAttribute("gameDetailsPath", homepageService.getGameDetailsPath());
 		model.addAttribute("gameId", id);
-		model.addAttribute("reviews", homepageService.getGame(Long.valueOf(id)).getReviews());
-		return "homepage";
+		model.addAttribute("reviews", game.getReviews());
+		model.addAttribute("game", game );
+		model.addAttribute("newReview", new Review());
+		return "gamepage";
 	}
+
+	@PutMapping("/game/submitReview")
+	public String submitReview(@ModelAttribute("newReview") Review newReview,
+							   BindingResult result,
+							   Model model) {
+		
+		newReview.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		homepageService.saveReview(newReview);
+		return "gamepage";
+	}
+	
 
 }

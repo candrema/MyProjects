@@ -6,6 +6,6 @@ import com.ratemygame.entity.GameDetails;
 public interface PageService {
 	
 	public Game getGame(long id);
-	public GameDetails getGameDetails(long id);
+	public GameDetails getGameDetailsEntity(long id);
 	
 }
