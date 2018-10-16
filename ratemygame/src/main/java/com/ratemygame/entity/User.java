@@ -27,11 +27,14 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "username")
+	private String username;
 	
 	@Column(name = "last_name")
 	private String lastName;
+	
+	@Column(name = "first_name")
+	private String firstName;
 
 	@Column(name = "active")
 	private int active;
@@ -48,10 +51,11 @@ public class User {
 		this.active = user.getActive();
 		this.email = user.getEmail();
 		this.roles = user.getRoles();
-		this.name = user.getName();
+		this.username = user.getUsername();
 		this.lastName = user.getLastName();
 		this.password = user.getPassword();
 		this.id = user.getId();
+		this.firstName = user.getFirstName();
 	}
 
 	public long getId() {
@@ -78,12 +82,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getLastName() {
@@ -108,6 +112,14 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	
 	

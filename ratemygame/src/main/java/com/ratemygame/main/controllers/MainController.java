@@ -28,7 +28,7 @@ public class MainController {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		model.addAttribute("username", user.getName());
+		model.addAttribute("username", user.getUsername());
 		model.addAttribute("topGames", homepageService.getTopGames());
 		
 		return "homepage";
