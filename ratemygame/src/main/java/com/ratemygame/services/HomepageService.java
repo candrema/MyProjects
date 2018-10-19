@@ -81,11 +81,7 @@ public class HomepageService implements PageService {
 	
 	public GameDetailsDTO getGameDetails(long id) {
 		GameDetails game = getGameDetailsEntity(id);
-		return new GameWrapper()
-					.setCompany(game.getCompany())
-					.setDescription(game.getDescription())
-					.setgGenre(game.getGenre())
-					.getGameDetailsDTO();			
+		return GameWrapper.getGameDetailsDTODetailed(game);
 	}
 	
 }

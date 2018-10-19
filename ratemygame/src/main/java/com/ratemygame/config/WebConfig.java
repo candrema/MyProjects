@@ -1,5 +1,6 @@
 package com.ratemygame.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +26,6 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addViewControllers(ViewControllerRegistry registry) {
 
 		registry.addRedirectViewController("/", "/homepage");
-		// registry.addViewController("login.html");
 	}
 
 	@Override
@@ -49,6 +49,8 @@ public class WebConfig implements WebMvcConfigurer {
 		return new DefaultConversionService();
 	}
 	
-	
-
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
 }

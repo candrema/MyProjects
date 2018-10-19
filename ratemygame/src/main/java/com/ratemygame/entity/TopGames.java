@@ -13,11 +13,11 @@ public class TopGames {
 	@Column(name = "game_Id")
 	private long gameId;
 	
-	@Column(name = "average")
-	private double average;
+	@Column(name = "rate")
+	private double rate;
 	
-	@Column(name = "reviews")
-	private int reviews;
+	@Column(name = "reviewsCount")
+	private int reviewsCount;
 
 	public long getGameId() {
 		return gameId;
@@ -27,21 +27,20 @@ public class TopGames {
 		this.gameId = gameId;
 	}
 
-	public double getAverage() {
-		return average;
+	public double getRate() {
+		return rate;
 	}
 
-	public void setAverage(double average) {
-		this.average = average;
+	public void setRate(double rate) {
+		this.rate = rate;
 	}
 
-	public int getReviews() {
-		return reviews;
+	public int getReviewsCount() {
+		return reviewsCount;
 	}
 
-	public void setReviews(int reviews) {
-		this.reviews = reviews;
+	public void setReviewsCount(int reviewsCount) {
+		this.reviewsCount = reviewsCount;
 	}
-	
-	
+
 }

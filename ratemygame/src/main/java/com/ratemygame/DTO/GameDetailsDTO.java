@@ -2,32 +2,22 @@ package com.ratemygame.DTO;
 
 public class GameDetailsDTO {
 
-	private long id;
+	private long gameId;
 	private String description;
 	private String platforms;
 	private String company;
 	private String genre;
 	private String year;
 	private double rate;
+	private long reviewsCount;
 
-	public GameDetailsDTO(long id, String description, String platforms, String company, String genre, String year,
-			double rate) {
-		
-		this.id = id;
-		this.description = description;
-		this.platforms = platforms;
-		this.company = company;
-		this.genre = genre;
-		this.year = year;
-		this.rate = rate;
+
+	public long getGameId() {
+		return gameId;
 	}
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long gameId) {
+		this.gameId = gameId;
 	}
 
 	public String getDescription() {
@@ -77,7 +67,17 @@ public class GameDetailsDTO {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-	
-	
+
+	public long getReviewsCount() {
+		return reviewsCount;
+	}
+
+	public void setReviewsCount(long reviewsCount) {
+		this.reviewsCount = reviewsCount;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
 
 }

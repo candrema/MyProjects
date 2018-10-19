@@ -46,6 +46,7 @@ public class MainController {
 		model.addAttribute("gameDetailsPath", homepageService.getGameDetailsPath());
 		model.addAttribute("gameId", id);
 		model.addAttribute("reviews", game.getReviews());
+		model.addAttribute("media", game.getMedia());
 		model.addAttribute("game", game );
 		model.addAttribute("newReview", new Review());
 		return "gamepage";

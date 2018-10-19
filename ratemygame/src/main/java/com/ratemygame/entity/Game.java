@@ -34,6 +34,10 @@ public class Game {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private List<Review> reviews;
+    
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private List<Media> media; 
 	
 	public Game() {
 		
@@ -85,7 +89,13 @@ public class Game {
 	public void setGameDetails(GameDetails gameDetails) {
 		this.gameDetails = gameDetails;
 	}
-	
-	
+
+	public List<Media> getMedia() {
+		return media;
+	}
+
+	public void setMedia(List<Media> media) {
+		this.media = media;
+	}
 
 }
