@@ -25,10 +25,14 @@ public class MainController {
 	public String getMainPage(Model model) {
 		model.addAttribute("bigGames", homepageService.getBigGames());
 		model.addAttribute("bigGamesPath", homepageService.getBigImagePath());
+		String username = "";
+		
+		if ( SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User) {
+			User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			username = user.getUsername();
+		}
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		model.addAttribute("username", user.getUsername());
+		model.addAttribute("username", username);
 		model.addAttribute("topGames", homepageService.getTopGames());
 		
 		return "homepage";

@@ -35,11 +35,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		User user = new User();
 		user.setEmail(userDTO.getEmail());
-		user.setUsername(userDTO.getFirstName());
-		user.setLastName(userDTO.getLastName());
+		user.setUsername(userDTO.getUsername());
 		user.setActive(0);
 		user.setPassword(userDTO.getPassword());
-		user.setFirstName(userDTO.getFirstName());
 		
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(new Role("USER"));
