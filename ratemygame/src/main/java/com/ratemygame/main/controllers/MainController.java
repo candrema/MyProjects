@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.ratemygame.DTO.ReviewDTO;
 import com.ratemygame.entity.Game;
-import com.ratemygame.entity.Review;
 import com.ratemygame.entity.User;
 import com.ratemygame.services.HomepageService;
 
@@ -48,12 +48,12 @@ public class MainController {
 		model.addAttribute("reviews", game.getReviews());
 		model.addAttribute("media", game.getMedia());
 		model.addAttribute("game", game );
-		model.addAttribute("newReview", new Review());
+		model.addAttribute("newReview", new ReviewDTO());
 		return "gamepage";
 	}
 
 	@PutMapping("/game/submitReview")
-	public String submitReview(@ModelAttribute("newReview") Review newReview,
+	public String submitReview(@ModelAttribute("newReview") ReviewDTO newReview,
 							   BindingResult result,
 							   Model model) {
 		

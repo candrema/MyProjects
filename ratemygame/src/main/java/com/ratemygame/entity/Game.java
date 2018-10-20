@@ -35,7 +35,7 @@ public class Game {
     @JoinColumn(name = "game_id")
     private List<Review> reviews;
     
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "game_id")
     private List<Media> media; 
 	

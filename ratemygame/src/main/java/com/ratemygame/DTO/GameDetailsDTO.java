@@ -11,7 +11,6 @@ public class GameDetailsDTO {
 	private double rate;
 	private long reviewsCount;
 
-
 	public long getGameId() {
 		return gameId;
 	}
@@ -79,5 +78,5 @@ public class GameDetailsDTO {
 	public void setGameId(long gameId) {
 		this.gameId = gameId;
 	}
-
+	
 }

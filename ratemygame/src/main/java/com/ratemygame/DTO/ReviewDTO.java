@@ -1,5 +1,8 @@
 package com.ratemygame.DTO;
 
+import java.util.List;
+
+import com.ratemygame.entity.Media;
 import com.ratemygame.entity.User;
 
 public class ReviewDTO {
@@ -8,6 +11,7 @@ public class ReviewDTO {
 	private int rate;
 	private String comment;
 	private User user;
+	private List<Media> media; 
 	
 	
 	public long getGameId() {
@@ -34,6 +38,11 @@ public class ReviewDTO {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+	public List<Media> getMedia() {
+		return media;
+	}
+	public void setMedia(List<Media> media) {
+		this.media = media;
+	}
 	
 }

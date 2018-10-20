@@ -15,12 +15,17 @@ import com.ratemygame.entity.CustomUserDetails;
 import com.ratemygame.entity.Role;
 import com.ratemygame.entity.User;
 import com.ratemygame.repository.UserRepository;
+import com.ratemygame.wrapper.UserWrapper;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+    private UserWrapper userMapper;
+
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -32,20 +37,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	}
 	
 	public void createUser (UserDTO userDTO) {
-		
-		User user = new User();
-		user.setEmail(userDTO.getEmail());
-		user.setUsername(userDTO.getUsername());
-		user.setActive(0);
-		user.setPassword(userDTO.getPassword());
-		
+		User user = userMapper.getUser(userDTO);
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(new Role("USER"));
-		
 		user.setRoles(roles);
-		
 		userRepository.save(user);
-		
 	}
 	
 	public User emailExists(String email) {
