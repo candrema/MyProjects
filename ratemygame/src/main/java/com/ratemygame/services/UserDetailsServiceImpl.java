@@ -44,6 +44,10 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		userRepository.save(user);
 	}
 	
+	public UserDTO transformUserToDTO(User user) {
+		return userMapper.getUserDTO(user);
+	}
+	
 	public User emailExists(String email) {
 		Optional<User> optional = userRepository.findByEmail(email);
 		return optional.orElse(null);

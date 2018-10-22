@@ -5,8 +5,9 @@
 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<%@ page language="java" import="java.util.*,java.lang.*" %> 
-
+<%@ page language="java" import="java.util.*,java.lang.*" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page language="java" import="com.ratemygame.DTO.UserDTO" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +32,45 @@
 </head>
 
 <body>
+
+  <!-- Modal -->
+<div id="createUserModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">>
+  <div class="modal-dialog" role= "document">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          <div id = "testes" class="modal-body mx-3">
+				<div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type = "text" placeholder = "username" name = "usernameRegister"  id = "usernameRegister" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                </div>
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" placeholder = "email" name = "emailRegister" id="emailRegister" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                </div>
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type = "password" placeholder = "password" name = "passwordRegister"  id = "passwordRegister" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                </div>
+                
+				<div class="modal-footer d-flex justify-content-center">
+                	<button id ="registerButton" name = "registerButton" type= "submit" class="btn btn-deep-orange">Sign up</button>
+            	</div>   
+    	</div>       
+    </div>
+    
+    
+  </div>
+</div>
           <nav class="navbar navbar-inverse navbar-expand-lg fixed-top bg-dark" role="navigation-demo">
             <div class="container">
               <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,9 +111,24 @@
                   <ul class="navbar-nav ml-auto">
                   
                   <sec:authorize access="hasRole('USER')">
-                    <li> <a> <%= request.getAttribute("username")%></a></li> 
+                    <li> <a> <%= ((UserDTO)request.getAttribute("user")).getUsername()%></a></li> 
                   </sec:authorize>
                   
+                  <sec:authorize access="!hasRole('USER')">
+                  
+                    <li>
+                    	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#createUserModal">Open Modal</button>
+                    </li>
+                    <li>
+							<form:form action="login" method="POST" modelAttribute="user">
+								<form:input type = "text" placeholder = "username" name = "username"  id = "username" path = "username"/>
+								<form:input type = "password" placeholder = "password" name = "password"  id = "password" path = "password"/>
+								<button type= "submit" value ="Submit"></button>
+							</form:form>
+                    </li> 
+                  </sec:authorize>
+                  
+                  <button type = "submit" id = "teste" name = "teste">
 				              
                   <li class="dropdown nav-item">
                     <a href="#pablo" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
@@ -97,6 +152,7 @@
           </nav>
      <div>
   </div>  
+  
 
     <div class="section section-grad">
       <div class="container">
@@ -1724,6 +1780,7 @@
   <script src="./assets/js/plugins/jquery.sharrre.js" type="text/javascript"></script>
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="./assets/js/material-kit.js?v=2.0.4" type="text/javascript"></script>
+     <script src="userJS.js"></script> 
   <script>
     $(document).ready(function() {
       //init DateTimePickers
@@ -1797,6 +1854,7 @@
 
     });
   </script>
+
 </body>
 
 </html>

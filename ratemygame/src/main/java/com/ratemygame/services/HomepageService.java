@@ -4,13 +4,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.ratemygame.DTO.GameDetailsDTO;
 import com.ratemygame.DTO.ReviewDTO;
+import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.config.HomepageConfig;
+import com.ratemygame.config.SecurityConfig;
 import com.ratemygame.entity.Game;
 import com.ratemygame.entity.GameDetails;
 import com.ratemygame.entity.TopGames;
@@ -40,6 +46,10 @@ public class HomepageService implements PageService {
 	
 	@Autowired
     private GameWrapper gameMapper;
+	
+	@Autowired
+	private SecurityConfig securityConfig;
+	
 
 	@Override
 	@Transactional(readOnly = true)
@@ -89,6 +99,22 @@ public class HomepageService implements PageService {
 	
 	public List<ReviewDTO> getGameReviews(Game game) {
 		return game.getReviews().stream().map(gameMapper::getReviewDetailsDTO).collect(Collectors.toList());
+	}
+	
+	public String loadHomePage(Model model) {
+	    model.addAttribute("bigGames", getBigGames());
+		model.addAttribute("bigGamesPath", getBigImagePath());
+		
+		UserDTO user = securityConfig.getLoginUserDTO();
+		
+		model.addAttribute("user", user);
+		model.addAttribute("topGames", getTopGames());
+		
+		return "homepage";
+	}
+	
+	public void doLogin(HttpServletRequest req, String username, String password) throws AuthenticationException, Exception {
+		securityConfig.doLogin(req, username, password);
 	}
 
 }

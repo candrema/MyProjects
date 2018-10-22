@@ -1,11 +1,11 @@
 package com.ratemygame.main.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.services.UserDetailsServiceImpl;
@@ -13,13 +13,18 @@ import com.ratemygame.services.UserDetailsServiceImpl;
 @Controller
 public class UserController {
 	
+	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	@PutMapping("/createUser")
-	public String createUser(@ModelAttribute("user") UserDTO userDTO) {
-		userDetailsService.createUser(userDTO);
-		return "/homepage";
+	@PostMapping("/createUser")
+	public ResponseEntity<?> createUser(String username,
+			String password,
+			String email,
+			Model model) {
+		userDetailsService.createUser(new UserDTO(username, password, email));
+		
+		return ResponseEntity.ok("url");
 	}
 	
 	@GetMapping("/register")
