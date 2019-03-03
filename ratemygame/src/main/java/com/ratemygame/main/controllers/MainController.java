@@ -1,5 +1,8 @@
 package com.ratemygame.main.controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import com.ratemygame.DTO.GameDetailsDTO;
 import com.ratemygame.DTO.ReviewDTO;
 import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.entity.Game;

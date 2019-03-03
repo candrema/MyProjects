@@ -83,10 +83,6 @@ public class HomepageService implements PageService {
 		return topGamesRepository.findAll();
 	}
 
-	@Transactional
-	public void saveReview(ReviewDTO review) {
-		reviewRepository.save(gameMapper.getReview(review));
-	}
 
 	public List<GameDetailsDTO> getTopGames() {
 		return getTopGamesEntity().stream().map(gameMapper::getGameDetailsDTOTOP).collect(Collectors.toList());

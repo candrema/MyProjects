@@ -8,8 +8,8 @@ public class GameDetailsDTO {
 	private String company;
 	private String genre;
 	private String year;
-	private double rate;
-	private long reviewsCount;
+	private double average;
+	private long reviews;
 
 	public long getGameId() {
 		return gameId;
@@ -59,20 +59,20 @@ public class GameDetailsDTO {
 		this.year = year;
 	}
 
-	public double getRate() {
-		return rate;
+	public double getAverage() {
+		return average;
 	}
 
-	public void setRate(double rate) {
-		this.rate = rate;
+	public void setAverage(double average) {
+		this.average = average;
 	}
 
-	public long getReviewsCount() {
-		return reviewsCount;
+	public long getReviews() {
+		return reviews;
 	}
 
-	public void setReviewsCount(long reviewsCount) {
-		this.reviewsCount = reviewsCount;
+	public void setReviews(long reviews) {
+		this.reviews = reviews;
 	}
 
 	public void setGameId(long gameId) {

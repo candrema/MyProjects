@@ -21,7 +21,7 @@ public class Review {
 	private long gameId;
 	
 	@Column(name = "rate")
-	private int rate;
+	private double rate;
 	
 	@Column(name = "comment")
 	private String comment;
@@ -58,12 +58,12 @@ public class Review {
 	}
 
 
-	public int getRate() {
+	public double getRate() {
 		return rate;
 	}
 
 
-	public void setRate(int rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
 

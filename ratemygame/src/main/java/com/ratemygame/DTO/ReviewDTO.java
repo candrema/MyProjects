@@ -8,10 +8,9 @@ import com.ratemygame.entity.User;
 public class ReviewDTO {
 
 	private long gameId;
-	private int rate;
+	private long rate;
 	private String comment;
-	private User user;
-	private List<Media> media; 
+	private long userId;
 	
 	
 	public long getGameId() {
@@ -20,10 +19,10 @@ public class ReviewDTO {
 	public void setGameId(long gameId) {
 		this.gameId = gameId;
 	}
-	public int getRate() {
+	public long getRate() {
 		return rate;
 	}
-	public void setRate(int rate) {
+	public void setRate(long rate) {
 		this.rate = rate;
 	}
 	public String getComment() {
@@ -32,17 +31,11 @@ public class ReviewDTO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public User getUser() {
-		return user;
+	public long getUserId() {
+		return userId;
 	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public List<Media> getMedia() {
-		return media;
-	}
-	public void setMedia(List<Media> media) {
-		this.media = media;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	
 }
