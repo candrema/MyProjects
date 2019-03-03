@@ -1,0 +1,246 @@
+<!-- UP LEFT!-->
+<div class="row mb-3 mt-3">
+    <div class="main-image">
+        <div class="image-sh p-0 m-0 border">
+            <div id="carouselExampleSlidesOnly" class="carousel slide p-0 m-0" data-ride="carousel">
+                <div class=" carousel-inner p-0 m-0">
+                    <div ng-repeat="big in homeCtrl.big track by $index" class=" carousel-item" ng-class="{'active': $first}">
+                        <img class="img-fluid image-opa" ng-src="{{big}}.jpg" ui-sref="game({gameId: big})">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row  ml-0 mr-0 mt-3">
+
+            
+            <div ng-repeat="new in homeCtrl.news track by $index" class="news-row border p-0 background-white image-sh" ng-class="{'ml-auto': !$first}">
+                <img class="img-fluid image-opa" ng-src="{{new}}">
+                <small class="custom-review-small text-grey pl-1">+5 reviews {{ 1 + 1 }}</small>
+                <img class="icon-plat text-right pr-1" src="windowsicon.ico" alt="First slide">
+                <img class="icon-plat text-right pr-1" src="androidicon.ico" alt="First slide">
+                <img class="icon-plat text-right pr-1" src="appleicon.ico" alt="First slide">
+            </div>
+       <!-- <div class="news-row border p-0 background-white ml-auto image-sh">
+                <img class="img-fluid image-opa" src="csgo.jpg">
+                <small class="custom-review-small text-grey pl-1">+23 320 reviews</small>
+                <img class="icon-plat text-right pr-1" src="windowsicon.ico" alt="First slide">
+                <img class="icon-plat text-right pr-1" src="appleicon.ico" alt="First slide">
+            </div>
+            <div class="news-row border p-0 background-white ml-auto image-sh">
+                <img class="img-fluid image-opa" src="496717.jpg">
+                <small class="custom-review-small text-grey pl-1">+66 454 reviews</small>
+                <img class="icon-plat text-right pr-1" src="windowsicon.ico" alt="First slide">
+            </div>
+            <div class="news-row border p-0  background-white ml-auto image-sh">
+                <img class="img-fluid image-opa" src="439638.jpg">
+                <small class="custom-review-small text-grey pl-1">+39 394 reviews</small>
+                <img class="icon-plat text-right pr-1" src="windowsicon.ico" alt="First slide">
+                <img class="icon-plat text-right pr-1" src="appleicon.ico" alt="First slide">
+            </div>
+        -->
+        </div>
+    </div>
+
+    <!-- UP LEFT!-->
+
+    <!-- UP RIGHT !-->
+
+
+    <div class="main-column p-0 m-0 ml-1">
+        <div ng-repeat="top in homeCtrl.topGames" class="row mid">
+            <a class="custom-review text-center ml-4">{{$index + 1}}</a>
+            <div class="mt-0 p-0 main-table border image-sh">
+                <img class="img-fluid" ng-src="{{top.gameId}}.jpg">
+                <div class="review"> {{top.average.toFixed(1)}} </div>
+            </div> 
+        </div>
+    </div>
+    <!-- UP RIGHT !-->
+</div>
+
+
+
+<!-- BODY -->
+<div class="header mt-4 py-2">
+    <div class="container py-2">
+
+        <div class="row">
+
+            <div class="col-7 p-0 pr-1 m-3" ng-switch="homeCtrl.choosedBottom">
+
+                <div class="row">
+                    <div class="col text-center" ng-class="{'border-bottom border-dark': homeCtrl.choosedBottom === 'video', 'border-bottom border-secondary':hoveringVideo}"
+                        ng-click="homeCtrl.chooseCombo('video')" ng-mouseenter="hoveringVideo=true" ng-mouseleave="hoveringVideo=false">
+                        <strong class="default">
+                            <span class="fab fa-youtube"></span> Videos </strong>
+                    </div>
+
+                    <div class="col  text-center  ml-auto" ng-class="{'border-bottom border-dark': homeCtrl.choosedBottom === 'twitch', 'border-bottom border-secondary':hoveringTwitch}"
+                        ng-click="homeCtrl.chooseCombo('twitch')" ng-mouseenter="hoveringTwitch=true" ng-mouseleave="hoveringTwitch=false">
+
+                        <strong class="default">
+                            <span class="fab fa-twitch"></span> Twitch </strong>
+                    </div>
+
+                    <div class="col  text-center  ml-auto" ng-class="{'border-bottom border-dark': homeCtrl.choosedBottom === 'news', 'border-bottom border-secondary':hoveringNews}"
+                        ng-click="homeCtrl.chooseCombo('news')" ng-mouseenter="hoveringNews=true" ng-mouseleave="hoveringNews=false">
+
+                        <strong class="default">
+                            <span class="far fa-newspaper"></span> News </strong>
+                    </div>
+                </div>
+
+                <br>
+                <!-- VIDEO -->
+
+                <div ng-switch-when="video">
+                    <div class="row border-bottom  border-top border-secondary">
+                        <div class="col-4 pl-0">
+                            <iframe width="126%" height="105%" src="https://www.youtube-nocookie.com/embed/9sWEecNUW-o"
+                                frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="col-7 ml-5">
+                            <i>
+                                <b> Como fazer Merda! - COiso </b>
+                            </i>
+                            <br>
+                            <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+                        </div>
+                    </div>
+                    <div class="row border-bottom border-secondary">
+                        <div class="col-4 pl-0">
+                            <iframe width="126%" height="105%" src="https://www.youtube-nocookie.com/embed/9sWEecNUW-o"
+                                frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="col-7 ml-5">
+                            <i>
+                                <b> Como fazer Merda! - COiso </b>
+                            </i>
+                            <br>
+                            <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+                        </div>
+                    </div>
+                    <div class="row border-bottom border-secondary">
+                        <div class="col-4 pl-0">
+                            <iframe width="126%" height="105%" src="https://www.youtube-nocookie.com/embed/9sWEecNUW-o"
+                                frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="col-7 ml-5">
+                            <i>
+                                <b> Como fazer Merda! - COiso </b>
+                            </i>
+                            <br>
+                            <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TWITCH -->
+
+                <div ng-switch-when="twitch">
+                    <div class="row border-bottom  border-top border-secondary">
+                        <div class="col-4 pl-0">
+                            <iframe width="126%" height="105%" src="https://player.twitch.tv/?channel=zorlakoka&autoplay=false"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture
+									frameborder="
+                                1 " 
+									allowfullscreen>
+							</iframe>		
+						</div>
+						<div class = "
+                                col-7 ml-5
+                                ">
+							<i><b> Como fazer Merda! - COiso </b></i>
+							<br>	
+							<i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+						</div>
+					</div>
+					<div class = "
+                                row border-bottom border-top border-secondary ">
+						<div class = " col-4 pl-0
+                                ">
+							<iframe width=" 126% " height=" 105% "
+									src=" https://player.twitch.tv/?channel=zorlakoka&autoplay=false
+                                "
+									allow=" accelerometer; autoplay; encrypted-media; gyroscope;
+                                picture-in-picture frameborder="1" allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="col-7 ml-5">
+                            <i><b> Como fazer Merda! - COiso </b></i>
+                            <br>
+                            <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+                        </div>
+                    </div>
+                    <div class="row border-bottom  border-top border-secondary">
+                        <div class="col-4 pl-0">
+                            <iframe width="126%" height="105%" src="https://player.twitch.tv/?channel=zorlakoka&autoplay=false"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture
+									frameborder="1" allowfullscreen>
+							</iframe>		
+						</div>
+						<div class = "col-7 ml-5">
+							<i><b> Como fazer Merda! - COiso </b></i>
+							<br>	
+							<i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+						</div>
+					</div>
+				</div>
+				
+				<!-- NEWS -->
+				
+				<div ng-switch-when = "
+                                news ">
+					<div class = " row border-bottom border-top border-secondary
+                                ">
+						<div class = " col-4 pl-0 ">
+						</div>
+						<div class = " col-7 ml-5
+                                ">
+							<i><b> Como fazer Merda! - COiso </b></i>
+							<br>	
+							<i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+						</div>
+					</div>
+					<div class = "
+                                row border-bottom border-top border-secondary ">
+						<div class = " col-4 pl-0
+                                ">
+						</div>
+						<div class = " col-7 ml-5
+                                ">
+							<i><b> Como fazer Merda! - COiso </b></i>
+							<br>	
+							<i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+						</div>
+					</div>
+					<div class = "
+                                row border-bottom border-top border-secondary ">
+						<div class = " col-4 pl-0
+                                ">
+						</div>
+						<div class = " col-7 ml-5
+                                ">
+							<i><b> Como fazer Merda! - COiso </b></i>
+							<br>	
+							<i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
+						</div>
+					</div>
+		
+				</div>
+			</div>
+			
+		</div>
+		
+		
+	</div>
+</div>
+<!-- BODY -->
