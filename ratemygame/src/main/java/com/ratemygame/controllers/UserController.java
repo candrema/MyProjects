@@ -1,4 +1,4 @@
-package com.ratemygame.main.controllers;
+package com.ratemygame.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,6 @@ import com.ratemygame.services.UserDetailsServiceImpl;
 
 @Controller
 public class UserController {
-	
 	
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;

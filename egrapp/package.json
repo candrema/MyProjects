@@ -15,6 +15,7 @@
     "angular-messages": "^1.7.7",
     "angular-route": "^1.7.6",
     "html5-boilerplate": "0.0.1",
+    "ngstorage": "^0.3.11",
     "ui-bootstrap": "^0.1.11"
   },
   "devDependencies": {
@@ -32,7 +33,7 @@
     "postinstall": "npm run copy-libs",
     "update-deps": "npm update",
     "postupdate-deps": "npm run copy-libs",
-    "copy-libs": "cpx \"node_modules/{angular,angular-*,html5-boilerplate/dist,@uirouter/angularjs/release}/**/*\" app/lib -C",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,html5-boilerplate/dist,@uirouter/angularjs/release,ngstorage}/**/*\" app/lib -C",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./app",
     "pretest": "npm install",

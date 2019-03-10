@@ -11,8 +11,8 @@
       </md-input-container>
 
       <md-input-container class="md-block mb-5 mt-1 mx-5">
-        <label>Password</label>
-        <input required type="text" name="description" ng-model="ctrl.review.description" maxlength="50" />
+        <label>Comment</label>
+        <input required type="text" name="comment" ng-model="ctrl.review.comment" maxlength="50" />
 
         <div ng-messages="ctrl.review.description.$error" role="alert">
         </div>
@@ -30,5 +30,6 @@
         Cancel
       </md-button>
     </md-dialog-actions>
+    
   </form>
 </md-dialog>

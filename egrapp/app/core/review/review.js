@@ -8,8 +8,10 @@ myApp.service('reviewService', function ($mdDialog, $http) {
 
     var service = this;
 
+    service.showModal = function (ev, gameId, callback) {
 
-    service.showModal = function (ev, callback) {
+        service.gameId = gameId;
+
         $mdDialog.show({
             controller: ModalController,
             controllerAs: 'ctrl',
@@ -28,8 +30,8 @@ myApp.service('reviewService', function ($mdDialog, $http) {
 
     function ModalController($mdDialog) {
         var ctrl = this;
-
-        ctrl.review;
+        ctrl.review = {};
+        ctrl.review.gameId = service.gameId;
 
         ctrl.hide = function () {
             $mdDialog.hide();
@@ -44,6 +46,7 @@ myApp.service('reviewService', function ($mdDialog, $http) {
                 $mdDialog.hide(response);
             });
         };
+
     }
 
 

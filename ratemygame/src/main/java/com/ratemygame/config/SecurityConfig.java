@@ -19,8 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
-import com.ratemygame.DTO.UserDTO;
-import com.ratemygame.entity.User;
 import com.ratemygame.repository.UserRepository;
 import com.ratemygame.services.UserDetailsServiceImpl;
 
@@ -39,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.csrf().disable().antMatcher("/**").anonymous();
+    	http.csrf().disable().antMatcher("/**").anonymous().and().httpBasic();
+    	
     }
   
     @Bean
@@ -68,13 +67,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
     }
     
-    public UserDTO getLoginUserDTO() {
-    	if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User) {
-    		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    		return userDetailService.transformUserToDTO(user);
-    	}
-    	
-    	return new UserDTO();
-    }
 }
 

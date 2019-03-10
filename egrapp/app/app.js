@@ -5,12 +5,11 @@ angular.module('myApp', [
     'ui.router',
     'ngMaterial',
     'game',
-    'authentication',
+    'authentication'
 ])
-    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider','$httpProvider', function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
         // states
-
         $stateProvider
             .state('home', {
                 name: "home",
@@ -26,49 +25,52 @@ angular.module('myApp', [
                 controller: 'gameDetailsCtrl',
                 controllerAs: 'gameDCtrl'
             });
-
+        
+        //homepage
         $urlRouterProvider.when('/', 'home');
         $urlRouterProvider.when('', 'home');
 
-        /*
-        // set the domains and variables for each environment
-        envServiceProvider.config({
-            domains: {
-                development: ['localhost', 'acme.dev.local'],
-                production: ['acme.com', '*.acme.com', 'acme.dev.prod'],
-            },
-            vars: {
-                development: {
-                    baseUrl: 'C:/candrema/mnt/storage/ratemygame/assets',
-                    imagesBigUrl: '/images/imageBig',
-                    imagesUrl: '/images/imageDetails'
-    
-                },
-                production: {
-                    apiUrl: '//api.acme.com/v1',
-                    staticUrl: '//static.acme.com',
-    
-                },
-                defaults: {
-                    apiUrl: '//api.default.com/v1',
-                    staticUrl: '//static.default.com'
-                }
-            }
-        });*/
-
-        /*   envServiceProvider.check();*/
+        //Auth header
+        $httpProvider.interceptors.push('MyAuthRequestInterceptor');
 
     }])
     .controller('appCtrl', function ($scope, authService) {
 
-        $scope.user;
+        $scope.user = {};
 
-        $scope.showAuth = function(ev){
-            authService.showModal(ev, function(user){
-                 $scope.user = user;
-                 console.log($scope.user);
+        if(authService.authenticated()){
+            $scope.user = authService.user();
+            $scope.user.password = null;
+        }
+
+        $scope.showAuth = function (ev) {
+            authService.showModal(ev, function (user) {
+                $scope.user = user;
+                $scope.user.password = null;
             });
         };
 
 
-    });
+
+    }).factory('MyAuthRequestInterceptor', function ($q, $rootScope) {
+            return {
+                'request': function (config) {
+
+                    if ($rootScope.$localStorage.autentication) {
+                        config.headers.authorization = "Basic "+btoa($rootScope.$localStorage.user.username+":"+$rootScope.$localStorage.user.password);
+                    }
+                    return config || $q.when(config);
+                }
+                ,
+                responseError: function (rejection) {
+
+                    console.log("Found responseError: ", rejection);
+                    if (rejection.status == 401) {
+
+                        console.log("Access denied (error 401), please login again");
+                        //$location.nextAfterLogin = $location.path();
+                    }
+                    return $q.reject(rejection);
+                }
+            }
+        });

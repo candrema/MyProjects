@@ -18,7 +18,7 @@ app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsServ
 	};
 
 	game.showModal = function(ev){
-		reviewService.showModal(ev, function(){
+		reviewService.showModal(ev, game.gameId, function(){
 
 		})
 	};

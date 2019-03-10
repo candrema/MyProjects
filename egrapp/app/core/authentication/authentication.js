@@ -1,14 +1,15 @@
 var myApp = angular.module('authentication', [
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    'ngStorage'
 ]);
 
 
-myApp.service('authService', function ($mdDialog, $http) {
+myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStorage) {
 
     var service = this;
-    service.user;
 
+    $rootScope.$localStorage = $localStorage;
 
     service.showModal = function (ev, callback) {
         $mdDialog.show({
@@ -21,14 +22,30 @@ myApp.service('authService', function ($mdDialog, $http) {
             fullscreen: true // Only for -xs, -sm breakpoints.
         })
             .then(function (user) {
+                $rootScope.$localStorage.user = user;
+                $rootScope.$localStorage.autentication = true;
                 callback(user);
 
             }, function () {
+                $rootScope.$localStorage.user = null;
+                $rootScope.$localStorage.autentication = false;
                 callback(undefined);
             });
 
 
     };
+
+    service.authenticated = function(){
+        return $rootScope.$localStorage.autentication; 
+    };
+
+    service.user = function(){
+        return $rootScope.$localStorage.user; 
+    };
+
+
+
+
 
     function ModalController($mdDialog) {
         var ctrl = this;
@@ -58,7 +75,8 @@ myApp.service('authService', function ($mdDialog, $http) {
 
         $http({
             method: 'POST',
-            url: "http://localhost:8080/doLogin/" + email + "/" + password
+            url: "http://localhost:8080/doLogin",
+            headers: {authorization:"Basic "+btoa(email+":"+password)}
         }).then(function (response) {
 
             callback(response.data);

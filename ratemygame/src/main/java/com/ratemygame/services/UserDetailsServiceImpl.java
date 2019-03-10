@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -57,5 +58,23 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		Optional<User> optional = userRepository.findByUsername(username);
 		return optional.orElse(null);
 	}
+	
+    public UserDTO getLoginUserDTO() {
+    	if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User) {
+    		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    		return transformUserToDTO(user);
+    	}
+    	
+    	return new UserDTO();
+    }
+    
+    public User getLoginUser() {
+    	if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User) {
+    		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    		return user;
+    	}
+    	
+    	return new User();
+    }
 
 }
