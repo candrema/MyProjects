@@ -28,6 +28,12 @@ myApp.service('reviewService', function ($mdDialog, $http) {
             });
     };
 
+    service.getReviews = function(gameId){
+        get(gameId, function (response){
+            return response;
+        });
+    }
+
     function ModalController($mdDialog) {
         var ctrl = this;
         ctrl.review = {};
@@ -56,6 +62,21 @@ myApp.service('reviewService', function ($mdDialog, $http) {
             method: 'POST',
             url: "http://localhost:8080/review/submit",
             data: review
+        }).then(function (response) {
+
+            callback(response.data);
+
+        });
+
+    };
+
+
+    function get(gameId, callback) {
+
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/review",
+            params: {gameId: gameId}
         }).then(function (response) {
 
             callback(response.data);
