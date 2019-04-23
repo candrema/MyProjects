@@ -2,7 +2,7 @@
 
 var app = angular.module('game');
 
-app.factory('gameDetailsService', ['$http', function ($http) {
+app.factory('gameDetailsService', function ($http, reviewService) {
 
     var service = {};
 
@@ -18,10 +18,18 @@ app.factory('gameDetailsService', ['$http', function ($http) {
         });
 
     };
-
+    
+    service.getGameReviews = function(gameId, callback){
+    	reviewService.getReviews(gameId, callback(response));
+    }
+    
+    
+    service.showReviewModal = function (ev, callback) {
+    	reviewService.showModal(ev, game.gameId, callback)
+    }
 
 
     return service;
 
-}]);
+});
 

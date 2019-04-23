@@ -24,7 +24,7 @@ myApp.service('reviewService', function ($mdDialog, $http) {
             .then(function (review) {
                 callback();
             }, function () {
-                callback(undefined);
+                
             });
     };
 

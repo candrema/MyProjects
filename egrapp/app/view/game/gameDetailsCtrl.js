@@ -2,27 +2,37 @@ var app = angular.module('game', ['reviewModule']);
 
 
 
-app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsService, reviewService) {
+app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsService) {
 	
 	var game = this;
 
 	game.gameId = $stateParams.gameId;
 	game.gameDetail = {};
 
-
-
-	var init = function init(){
+	var refreshReviews = function(){
+		gameDetailsService.getGameReviews(game.gameId, function(response){
+			game.reviews = response;
+		});
+	}
+	
+	
+	var refreshDetails = function(){
 		gameDetailsService.getGameDetails(game.gameId, function(response){
 			game.gameDetail  = response;
 		});
+	}
+
+	var init = function init(){
+		refreshDetails();
+		refreshReviews();
 	};
 
+	
 	game.showModal = function(ev){
-		reviewService.showModal(ev, game.gameId, function(){
-
-		})
-	};
-
+		gameDetailsService.showReviewModal(ev, function(){
+			refreshReviews();
+		});
+	}
 
 	init();
 	

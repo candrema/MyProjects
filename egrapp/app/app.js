@@ -61,16 +61,6 @@ angular.module('myApp', [
                     }
                     return config || $q.when(config);
                 }
-                ,
-                responseError: function (rejection) {
-
-                    console.log("Found responseError: ", rejection);
-                    if (rejection.status == 401) {
-
-                        console.log("Access denied (error 401), please login again");
-                        //$location.nextAfterLogin = $location.path();
-                    }
-                    return $q.reject(rejection);
-                }
+                
             }
         });

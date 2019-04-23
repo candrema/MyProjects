@@ -23,6 +23,7 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
         })
             .then(function (user) {
                 $rootScope.$localStorage.user = user;
+                $rootScope.$localStorage.user.password = null;
                 $rootScope.$localStorage.autentication = true;
                 callback(user);
 
