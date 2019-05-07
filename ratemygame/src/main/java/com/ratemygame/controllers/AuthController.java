@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ratemygame.DTO.ReviewDTO;
 import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.services.UserDetailsServiceImpl;
 
@@ -22,7 +21,7 @@ public class AuthController {
 	
 	@PostMapping("/doRegister")
 	public UserDTO register(@RequestBody UserDTO user){	
-		//return userService.getLoginUserDTO();
+		return userService.registerUser(user);
 	}
 
 }

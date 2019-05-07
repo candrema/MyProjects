@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -75,6 +77,16 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     	}
     	
     	return new User();
+    }
+    
+    @Transactional
+    public UserDTO registerUser(UserDTO userDTO) {
+    	try {
+    		userRepository.save(userMapper.getUser(userDTO));
+    	} catch (Exception ex) {
+    		return null;
+    	}
+    	return userDTO;
     }
 
 }
