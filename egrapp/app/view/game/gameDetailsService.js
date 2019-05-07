@@ -19,13 +19,13 @@ app.factory('gameDetailsService', function ($http, reviewService) {
 
     };
     
-    service.getGameReviews = function(gameId, callback){
-    	reviewService.getReviews(gameId, callback(response));
+    service.getGameReviews = function(gameId){
+    	return reviewService.getReviews(gameId);
     }
     
     
-    service.showReviewModal = function (ev, callback) {
-    	reviewService.showModal(ev, game.gameId, callback)
+    service.showReviewModal = function (ev, gameId ,callback) {
+    	reviewService.showModal(ev, gameId, callback)
     }
 
 

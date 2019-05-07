@@ -10,9 +10,7 @@ app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsServ
 	game.gameDetail = {};
 
 	var refreshReviews = function(){
-		gameDetailsService.getGameReviews(game.gameId, function(response){
-			game.reviews = response;
-		});
+		game.reviews = gameDetailsService.getGameReviews(game.gameId);
 	}
 	
 	
@@ -29,7 +27,7 @@ app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsServ
 
 	
 	game.showModal = function(ev){
-		gameDetailsService.showReviewModal(ev, function(){
+		gameDetailsService.showReviewModal(ev, game.gameId, function(){
 			refreshReviews();
 		});
 	}

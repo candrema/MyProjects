@@ -23,11 +23,7 @@ app.controller('homepageCtrl', function ($http, $scope, homeService) {
 
 
     var init = function init() {
-        home.user = {
-            username: "anom",
-            password: "anom"
-        }
-
+        home.user = undefined;
         home.choosedBottom = "video";
 
 

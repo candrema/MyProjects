@@ -36,7 +36,7 @@ angular.module('myApp', [
     }])
     .controller('appCtrl', function ($scope, authService) {
 
-        $scope.user = {};
+        $scope.user = undefined;
 
         if(authService.authenticated()){
             $scope.user = authService.user();
@@ -46,7 +46,8 @@ angular.module('myApp', [
         $scope.showAuth = function (ev) {
             authService.showModal(ev, function (user) {
                 $scope.user = user;
-                $scope.user.password = null;
+				if($scope.user !== undefined)
+					$scope.user.password = null;
             });
         };
 

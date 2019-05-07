@@ -45,7 +45,7 @@ public class GameService {
 	
 	public GameDetailsDTO getGameDetails(long id) {
 		Optional<GameDetails> gameDetails = getGameDetailsEntity(id);
-		return gameMapper.getGameDetailsDTODetailed(gameDetails.get());
+		return gameMapper.getGameDetailsDTODetailed(gameDetails.orElse(new GameDetails()));
 		
 	}
 

@@ -28,7 +28,7 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
                 callback(user);
 
             }, function () {
-                $rootScope.$localStorage.user = null;
+                $rootScope.$localStorage.user = undefined;
                 $rootScope.$localStorage.autentication = false;
                 callback(undefined);
             });
@@ -69,6 +69,13 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
                  $mdDialog.hide(response);
             });
         };
+		
+		ctrl.register = function () {
+            doRegister(ctrl.user, function(response){
+                 ctrl.user = response;
+                 $mdDialog.hide(response);
+            });
+        };
     }
 
 
@@ -85,6 +92,19 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
         });
 
     };
+	
+	
+	function doRegister(user){
+		$http({
+            method: 'POST',
+            url: "http://localhost:8080/doRegister",
+			data: user
+        }).then(function (response) {
+
+            callback(response.data);
+
+        });
+	};
 
 
     return service;

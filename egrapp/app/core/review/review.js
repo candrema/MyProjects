@@ -75,7 +75,7 @@ myApp.service('reviewService', function ($mdDialog, $http) {
 
         $http({
             method: 'GET',
-            url: "http://localhost:8080/review",
+            url: "http://localhost:8080/reviews",
             params: {gameId: gameId}
         }).then(function (response) {
 
