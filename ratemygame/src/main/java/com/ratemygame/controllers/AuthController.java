@@ -9,11 +9,13 @@ import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.services.UserDetailsServiceImpl;
 
 @RestController
+//@CrossOrigin("http://localhost:8000")
 public class AuthController {
 	
 	@Autowired
 	private UserDetailsServiceImpl userService;
-
+	
+	
 	@PostMapping("/doLogin")
 	public UserDTO login(){	
 		return userService.getLoginUserDTO();

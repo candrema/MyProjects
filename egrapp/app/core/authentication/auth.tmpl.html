@@ -49,25 +49,18 @@
 				  
 				  <md-input-container class="md-block m-5 mb-1">
 					<label>Username</label>
-					<input required type="username" name="username" ng-model="ctrl.user.username" maxlength="50"/>
+					<input required type="username" name="name" ng-model="ctrl.user.name" maxlength="50"/>
 
-					<div ng-messages="ctrl.email.$error" role="alert">
+					<div ng-messages="ctrl.name.$error" role="alert">
 					</div>
 				  </md-input-container>
 				  
-				  <md-input-container class="md-block m-5 mb-1">
-					<label>Name</label>
-					<input required type="name" name="name" ng-model="ctrl.user.name" maxlength="50"/>
-
-					<div ng-messages="ctrl.email.$error" role="alert">
-					</div>
-				  </md-input-container>
 
 				  <md-input-container class="md-block mb-5 mt-1 mx-5">
 					<label>Password</label>
 					<input required type="password" name="password" ng-model="ctrl.user.password" maxlength="50" />
 
-					<div ng-messages="ctrl.email.$error" role="alert">
+					<div ng-messages="ctrl.password.$error" role="alert">
 					</div>
 				  </md-input-container>
 				  

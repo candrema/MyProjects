@@ -65,12 +65,17 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
 
         ctrl.login = function () {
             doLogin(ctrl.email, ctrl.password, function(response){
+				if(response.status === 401){
+					console.log('sadasdsa')
+				} else {
                  ctrl.user = response;
                  $mdDialog.hide(response);
+				}
             });
         };
 		
 		ctrl.register = function () {
+			ctrl.user.username = ctrl.user.email;
             doRegister(ctrl.user, function(response){
                  ctrl.user = response;
                  $mdDialog.hide(response);
@@ -89,12 +94,16 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
 
             callback(response.data);
 
+        }, function (response) {
+
+            callback(response.data);
+
         });
 
     };
 	
 	
-	function doRegister(user){
+	function doRegister(user, callback){
 		$http({
             method: 'POST',
             url: "http://localhost:8080/doRegister",

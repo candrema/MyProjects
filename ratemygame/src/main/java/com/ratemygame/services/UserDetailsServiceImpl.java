@@ -17,6 +17,7 @@ import com.ratemygame.DTO.UserDTO;
 import com.ratemygame.entity.CustomUserDetails;
 import com.ratemygame.entity.Role;
 import com.ratemygame.entity.User;
+import com.ratemygame.repository.RoleRepository;
 import com.ratemygame.repository.UserRepository;
 import com.ratemygame.wrapper.UserWrapper;
 
@@ -25,6 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Autowired
     private UserWrapper userMapper;
@@ -37,14 +41,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		optionalUser.orElseThrow(()-> new UsernameNotFoundException("Username not found"));
 		return optionalUser.map(CustomUserDetails::new).get();
-	}
-	
-	public void createUser (UserDTO userDTO) {
-		User user = userMapper.getUser(userDTO);
-		Set<Role> roles = new HashSet<Role>();
-		roles.add(new Role("USER"));
-		user.setRoles(roles);
-		userRepository.save(user);
 	}
 	
 	public UserDTO transformUserToDTO(User user) {
@@ -67,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     		return transformUserToDTO(user);
     	}
     	
-    	return new UserDTO();
+    	return null;
     }
     
     public User getLoginUser() {
@@ -82,7 +78,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Transactional
     public UserDTO registerUser(UserDTO userDTO) {
     	try {
-    		userRepository.save(userMapper.getUser(userDTO));
+    		User user = userMapper.getUser(userDTO);
+    		Set<Role> roles = new HashSet<Role>();
+    		roles.add(roleRepository.findById(1).orElse(new Role("USER")));
+    		user.setRoles(roles);
+    		userRepository.save(user);
     	} catch (Exception ex) {
     		return null;
     	}

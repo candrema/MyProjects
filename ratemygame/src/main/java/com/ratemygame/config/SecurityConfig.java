@@ -18,6 +18,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.ratemygame.repository.UserRepository;
 import com.ratemygame.services.UserDetailsServiceImpl;
@@ -37,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.csrf().disable().antMatcher("/**").anonymous().and().httpBasic();
+    	http.csrf().disable().cors().and().antMatcher("/**").anonymous().and().httpBasic();
     	
     }
   
@@ -57,6 +60,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	
         };
     }
+    
+    
+    @Bean
+	public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:8000");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source); 	
+	}	
     
     public void doLogin(HttpServletRequest req, String username, String password) throws AuthenticationException, Exception {
     	UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(username, password);
