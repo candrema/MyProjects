@@ -50,6 +50,11 @@ angular.module('myApp', [
 					$scope.user.password = null;
             });
         };
+		
+		$scope.logoutUser = function (){
+			authService.logout();
+			$scope.user = undefined;
+		};
 
 
 

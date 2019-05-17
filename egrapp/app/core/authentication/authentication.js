@@ -45,7 +45,10 @@ myApp.service('authService', function ($mdDialog, $http, $rootScope, $localStora
     };
 
 
-
+	service.logout = function(){
+		$rootScope.$localStorage.autentication = false;
+		$rootScope.$localStorage.user = undefined;
+	};
 
 
     function ModalController($mdDialog) {
