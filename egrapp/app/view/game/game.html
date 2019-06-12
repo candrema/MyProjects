@@ -43,7 +43,7 @@
                 <div class="row border-bottom border-top border-secondary">
 					<div class = "col text-left"> 
 						<i class="fas fa-plus"></i>
-						<i class = "list-details"> Submit Review</i>
+						<i class = "list-details" ng-click = "gameDCtrl.showModal($event)"> Submit Review</i>
 					</div>
 					<div class="col text-right mr-0 pr-0"> 
 						<i class="list-details"> Total: 30,00 reviews </i>
@@ -51,29 +51,11 @@
                 </div>
 				
 				<br>
-				
-                <div class="row border-bottom  border-secondary">
+
+                <div ng-repeat="cenas in gameDCtrl.reviews track by $index" class="row border-bottom  border-secondary">
                     <div class="col-7 ml-5">
                         <i>
                             <b> dsadasdsd - COiso </b>
-                        </i>
-                        <br>
-                        <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
-                    </div>
-                </div>
-                <div class="row border-bottom border-secondary">
-                    <div class="col-7 ml-5">
-                        <i>
-                            <b> Como dsdewdd - COiso </b>
-                        </i>
-                        <br>
-                        <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>
-                    </div>
-                </div>
-                <div class="row border-bottom border-secondary">
-                    <div class="col-7 ml-5">
-                        <i>
-                            <b> dsadasds - COiso </b>
                         </i>
                         <br>
                         <i> Teste 2123213213 dsadasdsa asd asdasd sad asdsa dsa asd asdasdasdasdasdas dsad ...</i>

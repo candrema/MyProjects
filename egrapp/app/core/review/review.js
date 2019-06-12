@@ -28,11 +28,9 @@ myApp.service('reviewService', function ($mdDialog, $http) {
             });
     };
 
-    service.getReviews = function(gameId){
-        get(gameId, function (response){
-            return response;
-        });
-    }
+    service.getReviews = function(gameId, callback){
+        return get(gameId, callback);
+    };
 
     function ModalController($mdDialog) {
         var ctrl = this;
@@ -79,7 +77,7 @@ myApp.service('reviewService', function ($mdDialog, $http) {
             params: {gameId: gameId}
         }).then(function (response) {
 
-            callback(response.data);
+             callback(response.data);
 
         });
 

@@ -10,7 +10,10 @@ app.controller('gameDetailsCtrl', function($scope, $stateParams, gameDetailsServ
 	game.gameDetail = {};
 
 	var refreshReviews = function(){
-		game.reviews = gameDetailsService.getGameReviews(game.gameId);
+		gameDetailsService.getGameReviews(game.gameId, function(response){
+			console.log(response);
+			game.reviews  = response;
+		});
 	}
 	
 	

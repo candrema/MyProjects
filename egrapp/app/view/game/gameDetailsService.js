@@ -19,8 +19,8 @@ app.factory('gameDetailsService', function ($http, reviewService) {
 
     };
     
-    service.getGameReviews = function(gameId){
-    	return reviewService.getReviews(gameId);
+    service.getGameReviews = function(gameId, callback){
+    	reviewService.getReviews(gameId, callback);
     }
     
     
