@@ -23,6 +23,9 @@ public class Review {
 	@Column(name = "rate")
 	private double rate;
 	
+	@Column(name = "title")
+	private String title;
+	
 	@Column(name = "comment")
 	private String comment;
 	
@@ -85,6 +88,16 @@ public class Review {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

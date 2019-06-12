@@ -5,6 +5,7 @@ public class ReviewDTO {
 	private long id;
 	private long gameId;
 	private long rate;
+	private String title;
 	private String comment;
 	private long userId;
 	
@@ -40,5 +41,13 @@ public class ReviewDTO {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 	
 }
